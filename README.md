@@ -1,0 +1,43 @@
+# Graph Simulation Wave-Agent Edition (ver 1.3.5)
+
+![GitHub top language](https://img.shields.io/github/languages/top/honmayuto02/GraphSimularion)
+![Unity Version](https://img.shields.io/badge/Unity-2022.3+-blue.svg)
+![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Windows-lightgrey)
+
+グラフ上での進行波の生存・消滅の実験を視覚化するシミュレーションプラットフォームです。直感的なグラフエディタにより、複雑なグラフを自在に構築し、動的なエージェントベースのシミュレーションを実行できます。
+
+## 🌟 主な機能
+
+### 1. インタラクティブ・グラフエディタ
+モード切り替え方式を採用した、直感的な操作感を持つエディタです。
+* **ノード設置**: クリック一つでグリッドスナップに対応したノードを配置。
+* **エッジ接続**: 2つのノードを選択して辺(エッジ)を形成。
+* **自由な移動**: 配置済みノードのドラッグ移動（接続された辺は自動追従）。
+* **スマート削除**: ノードとその付随する辺を一括削除。
+
+### 2. 高度なシミュレーション・エンジン
+「波」を模したWaveAgentによる動的なシミュレーション。
+* **波動の分岐**: ノード到達時に隣接するすべてのパスへ波が分裂・伝播。
+* **波動干渉システム**: 異なる発生源（Wave ID）を持つ波が正面衝突した際、互いに消滅する物理ロジックを搭載。
+* **Greenberg-Hastings Cellular Automaton対応**: セル・オートマトン的な興奮・抑制状態のシミュレート（ver 1.3.0〜）。
+
+### 3. データ管理 & ユーザビリティ
+* **保存/ロード機能**: 構築した複雑なグラフ構造をスロットごとに保存可能。
+* **Undo/Redo**: 編集ミスを恐れず作業できる、直感的なショートカット操作（Cmd+Z / Cmd+Y）。
+* **レスポンシブUI**: スタイリッシュでモダンなダークテーマUIを採用。
+
+## 🚀 クイックスタート
+
+1. **グラフを作成**: `ノード設置`モードで頂点を作り、`辺設置`モードで繋ぎます。
+2. **シミュレーション開始**: `スタート`をクリックし、初期地点となるノードを選択します。
+3. **干渉の観察**: 複数の地点から波を発生させ、ネットワーク上で波が消滅し合う様子を観察します。
+
+## 🛠 技術スタック
+
+* **Engine**: Unity 2021.3.x (Universal Render Pipeline)
+* **Language**: C#
+* **Architecture**: Singleton Pattern (GraphManager), Agent-based Modeling
+* **Physics**: Layer-based collision filtering for optimized performance
+
+---
+© 2026 [honmayuto02]
