@@ -3,7 +3,7 @@
 グラフ上での進行波の生存・消滅の実験を視覚化するシミュレーションプラットフォームです。直感的なグラフエディタにより、複雑なグラフを自在に構築し、動的なエージェントベースのシミュレーションを実行できます。
 
 <p align="center">
-<img width="400" alt="スクリーンショット 2026-04-10 16 47 08" src="https://github.com/user-attachments/assets/e1d0762a-e750-41f4-b7c9-a75b62edebf0" />
+<img width="600" alt="スクリーンショット 2026-04-10 16 47 08" src="https://github.com/user-attachments/assets/e1d0762a-e750-41f4-b7c9-a75b62edebf0" />
 </p>
 
 
@@ -18,16 +18,18 @@
 
 ### 2. シミュレーション
 「波」を模したWaveAgentによる動的なシミュレーション。
-* **波動の分岐**: ノード到達時に隣接するすべてのパスへ波が分裂・伝播。
-* **波動干渉システム**: 異なる発生源（Wave ID）を持つ波が正面衝突した際、互いに消滅する物理ロジックを搭載。
-* **Greenberg-Hastings Cellular Automaton対応**: セル・オートマトン的な興奮・抑制状態のシミュレート（ver 1.3.0〜）。
+* **波の分岐**: ノード到達時に隣接するすべての辺へ波が分裂・伝播。
+* **波の干渉システム**: 異なる発生源（Wave ID）を持つ波が正面衝突した際、互いに消滅する物理ロジックを搭載。
+* **Greenberg-Hastings Cellular Automaton対応**: セル・オートマトン的な興奮・抑制状態のシミュレート。
 
 ### 3. データ管理 & ユーザビリティ
-* **保存/ロード機能**: 構築した複雑なグラフ構造をスロットごとに保存可能。
+* **セーブ/ロード機能**: 構築した複雑なグラフ構造をスロットごとに保存可能。
 * **Undo/Redo**: 編集ミスを恐れず作業できる、直感的なショートカット操作（Cmd+Z / Cmd+Y）。
-* **レスポンシブUI**: スタイリッシュでモダンなダークテーマUIを採用。
+* **レスポンシブUI**: スタイリッシュでモダンなUIを採用。
 
-![画面収録 2026-04-10 17 22 42](https://github.com/user-attachments/assets/84f16566-bdbd-42da-a765-44107a7a2b95)
+<p align="center">
+<img width="600" alt="画面収録 2026-04-10 17 22 42" src="https://github.com/user-attachments/assets/84f16566-bdbd-42da-a765-44107a7a2b95" />
+</p>
 
 ## 🚀 クイックスタート
 
@@ -35,14 +37,19 @@
 2. **シミュレーション開始**: `スタート`をクリックし、初期地点となるノードを選択します。
 3. **干渉の観察**: 複数の地点から波を発生させ、ネットワーク上で波が消滅し合う様子を観察します。
 
-![画面収録 2026-04-10 17 16 46](https://github.com/user-attachments/assets/2288895b-f9d9-452c-9fe0-21ea29aa983c)
+<p align="center">
+<img width="600" alt="画面収録 2026-04-10 17 16 46]" src="https://github.com/user-attachments/assets/2288895b-f9d9-452c-9fe0-21ea29aa983c" />
+</p>
 
 ## 🛠 技術スタック
 
-* **Engine**: Unity 2021.3.x (Universal Render Pipeline)
+* **Engine**: Unity 2018
 * **Language**: C#
 * **Architecture**: Singleton Pattern (GraphManager), Agent-based Modeling
 * **Physics**: Layer-based collision filtering for optimized performance
+
+## ⚠️ 対応OS
+* **Mac OSのみ対応しています**
 
 ---
 © 2026 [honmayuto02]
