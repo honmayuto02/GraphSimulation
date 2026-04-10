@@ -1,8 +1,7 @@
 # Graph Simulation Wave-Agent Edition (ver 1.3.5)
 
 ![GitHub top language](https://img.shields.io/github/languages/top/honmayuto02/GraphSimularion)
-![Unity Version](https://img.shields.io/badge/Unity-2022.3+-blue.svg)
-![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Windows-lightgrey)
+![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20)
 
 グラフ上での進行波の生存・消滅の実験を視覚化するシミュレーションプラットフォームです。直感的なグラフエディタにより、複雑なグラフを自在に構築し、動的なエージェントベースのシミュレーションを実行できます。
 
