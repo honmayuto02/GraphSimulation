@@ -39,8 +39,9 @@
 3. **干渉の観察**: 複数の地点から波を発生させ、ネットワーク上で波が消滅し合う様子を観察します。
 
 <p align="center">
-<img width="600" alt="画面収録 2026-04-10 17 16 46]" src="https://github.com/user-attachments/assets/2288895b-f9d9-452c-9fe0-21ea29aa983c" />
+<img width="600" alt="マイムービー-6]" src="https://github.com/user-attachments/assets/be34e333-d669-4f83-9b07-35bb4d134295" />
 </p>
+
 
 ## 🛠 技術スタック
 
