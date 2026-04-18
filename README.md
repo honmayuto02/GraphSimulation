@@ -29,8 +29,13 @@
 * **レスポンシブUI**: スタイリッシュでモダンなUIを採用。
 
 <p align="center">
-<img width="600" alt="画面収録 2026-04-10 17 22 42" src="https://github.com/user-attachments/assets/84f16566-bdbd-42da-a765-44107a7a2b95" />
+<img width="600" alt="マイムービー-7]" src="https://github.com/user-attachments/assets/5bde628c-80bd-4d78-8fc8-be216aa2170f" />
 </p>
+
+
+https://github.com/user-attachments/assets/bfe14134-c47a-4764-8aad-cca02023c9ce
+
+
 
 ## 🚀 クイックスタート
 
