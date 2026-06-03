@@ -45,7 +45,7 @@
 
 ## 技術スタック
 
-* **Engine**: Unity 2018
+* **Engine**: Unity 2021.3
 * **Language**: C#
 * **Architecture**: Singleton Pattern (GraphManager), Agent-based Modeling
 * **Physics**: Layer-based collision filtering for optimized performance
