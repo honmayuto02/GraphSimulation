@@ -41,14 +41,13 @@ public class CellularAutomatonManager : MonoBehaviour
     {
         while (isSimulating)
         {
-            // ▼▼▼ このwhileループを「追加」します ▼▼▼
             // isPausedがtrueである間、この場で無限に待機し続ける
             while (isPaused)
             {
                 yield return null; // 1フレーム待機
             }
 
-            // --- 既存の処理 ---
+            // 既存の処理
             CalculateNextStates();
             ApplyNextStates();
             UpdateAllNodeColors();

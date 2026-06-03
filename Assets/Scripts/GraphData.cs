@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-// [System.Serializable] を付けることで、JsonUtilityで扱えるようになります
-
 [System.Serializable]
 public class SerializableNodeData
 {

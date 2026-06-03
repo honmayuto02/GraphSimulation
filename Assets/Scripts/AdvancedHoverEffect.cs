@@ -7,10 +7,9 @@ using System.Collections;
 public class AdvancedHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("ターゲット設定")]
-    public RectTransform iconTransform; // アイコン全体の親 (拡大用)
+    public RectTransform iconTransform; // アイコン全体の親
     public Image iconBgImage;           // アイコンの背景 (円/四角)
     
-    // ▼▼▼ 追加: 画像アイコンとテキストアイコン、どちらも対応できるようにする ▼▼▼
     public TMP_Text iconText;           // テキストの場合 (+記号など)
     public Image iconImage;             // 画像の場合 (フォルダアイコンなど)
 
@@ -21,7 +20,6 @@ public class AdvancedHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointer
     public float iconScaleMultiplier = 1.15f;
     public Color iconBgHoverColor;
     
-    // ▼▼▼ 修正: テキストと画像、それぞれのホバー色設定 ▼▼▼
     public Color iconContentHoverColor = Color.white; // 中身(文字/画像)のホバー色
     
     public Color outlineHoverColor;
@@ -69,7 +67,7 @@ public class AdvancedHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         float timer = 0f;
 
-        // --- スタート値 ---
+        // スタート値 
         Vector3 startScale = iconTransform ? iconTransform.localScale : Vector3.one;
         Color startBgColor = iconBgImage ? iconBgImage.color : Color.white;
         Color startTextColor = iconText ? iconText.color : Color.clear;
@@ -77,7 +75,7 @@ public class AdvancedHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointer
         Color startOutlineColor = buttonOutline ? buttonOutline.effectColor : Color.clear;
         Color startShadowColor = glowShadowImage ? glowShadowImage.color : Color.clear;
 
-        // --- ゴール値 ---
+        // ゴール値
         Vector3 targetScale = isHovering ? defaultIconScale * iconScaleMultiplier : defaultIconScale;
         Color targetBgColor = isHovering ? iconBgHoverColor : defaultIconBgColor;
         Color targetContentColor = isHovering ? iconContentHoverColor : defaultIconTextColor; // テキスト用
@@ -97,7 +95,7 @@ public class AdvancedHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointer
             // テキストがあれば色を変える
             if (iconText) iconText.color = Color.Lerp(startTextColor, targetContentColor, t);
             
-            // ▼▼▼ 画像があれば色を変える ▼▼▼
+            // 画像があれば色を変える
             if (iconImage) iconImage.color = Color.Lerp(startImageColor, targetImageColor, t);
             
             if (buttonOutline) buttonOutline.effectColor = Color.Lerp(startOutlineColor, targetOutlineColor, t);

@@ -24,7 +24,6 @@ public class SwitchToggleAnim : MonoBehaviour
         toggle = GetComponent<Toggle>();
 
         // 丸の移動幅を計算（背景の幅の半分 - 少し余白）
-        // ※BackgroundとHandleが正しくセットアップされている前提です
         handlePositionX = backgroundImage.rectTransform.rect.width * 0.25f; 
 
         // 初期状態の表示を強制セット

@@ -51,7 +51,7 @@ public class GraphManager : MonoBehaviour
     private enum CASetupMode { None, SettingExcited, SettingRefractory, SettingResting }
     private CASetupMode currentCASetupMode = CASetupMode.None;
 
-    // --- 内部変数 ---
+    // 内部変数
     private Camera mainCamera;
     private float zoomSpeed = 4.0f;
     private float panSpeed = 5.0f;
@@ -137,11 +137,10 @@ public class GraphManager : MonoBehaviour
             return;
         }
 
-        // 3. Backspaceキーが押されたら、選択中のノードをすべて削除
+        // Backspaceキーが押されたら、選択中のノードをすべて削除
         if (Input.GetKeyDown(KeyCode.Backspace) && selectedNodes.Count > 0)
         {
-            // 以前: DeleteNodeをループで直接実行
-            // 新規: DeleteSelectionCommandに選択ノードのリストを渡す
+            // DeleteSelectionCommandに選択ノードのリストを渡す
             ICommand command = new DeleteSelectionCommand(this, new List<Node>(selectedNodes), new List<Edge>());
             UndoManager.Instance.RegisterCommand(command);
             
@@ -300,7 +299,6 @@ public class GraphManager : MonoBehaviour
             {
                 caManager.StopSimulation();
             }
-            // ▼▼▼ このif文ブロックを追加 ▼▼▼
             // ボタンのテキストを初期状態の「Pause」に戻す
             if (pauseResumeButtonText != null)
             {
@@ -352,10 +350,10 @@ public class GraphManager : MonoBehaviour
             // CAモードの場合
             if (caManager != null)
             {
-                // 1. CAマネージャーに一時停止/再開を命令する
+                // CAマネージャーに一時停止/再開を命令する
                 caManager.TogglePause();
     
-                // 2. CAマネージャーから現在の状態を取得し、ボタンのテキストを更新する
+                // CAマネージャーから現在の状態を取得し、ボタンのテキストを更新する
                 if (caManager.IsPaused())
                 {
                     if (pauseResumeButtonText != null) pauseResumeButtonText.text = "再開";
@@ -399,9 +397,7 @@ public class GraphManager : MonoBehaviour
     
             if (!isOccupied)
             {
-                // ▼▼▼ 変更点 ▼▼▼
-                // 以前: Instantiateを直接実行
-                // 新規: CreateNodeCommandを作成してUndoManagerに登録
+                // CreateNodeCommandを作成してUndoManagerに登録
                 ICommand command = new CreateNodeCommand(this, potentialPosition);
                 UndoManager.Instance.RegisterCommand(command);
             }
@@ -415,14 +411,14 @@ public class GraphManager : MonoBehaviour
 
     private void HandleNodeMovement()
     {
-        // --- 1. マウスの左ボタンが押された瞬間の処理 ---
+        // マウスの左ボタンが押された瞬間の処理
         if (Input.GetMouseButtonDown(0))
         {
             Node hitNode = GetNodeAtMousePosition();
     
-            if (hitNode != null) // --- Case 1: ノードをクリックした場合 ---
+            if (hitNode != null) // ノードをクリックした場合
             {
-                if (selectedNodes.Contains(hitNode)) // 1a. 「選択済み」のノードをクリック
+                if (selectedNodes.Contains(hitNode)) // 「選択済み」のノードをクリック
                 {
                     // 複数ドラッグ移動を開始
                     isDraggingSelection = true;
@@ -434,7 +430,7 @@ public class GraphManager : MonoBehaviour
                         initialDragPositions.Add(node.transform.position); // 移動前の位置を記録
                     }
                 }
-                else // 1b. 「未選択」のノードをクリック
+                else // 「未選択」のノードをクリック
                 {
                     // これから単一ノードをドラッグする
                     ClearSelection(); // 他の選択を解除
@@ -447,7 +443,7 @@ public class GraphManager : MonoBehaviour
                     initialDragPositions = new List<Vector3> { selectedNode.transform.position }; // 移動前の位置を記録
                 }
             }
-            else // --- Case 2: 何もない場所をクリックした場合 ---
+            else // 何もない場所をクリックした場合
             {
                 // 範囲選択を開始
                 isSelecting = true;
@@ -456,10 +452,10 @@ public class GraphManager : MonoBehaviour
             }
         }
     
-        // --- 2. マウスの左ボタンが離された瞬間の処理 ---
+        // マウスの左ボタンが離された瞬間の処理
         if (Input.GetMouseButtonUp(0))
         {
-            // 2a. 範囲選択の終了処理
+            // 範囲選択の終了処理
             if (isSelecting)
             {
                 SelectNodesInRect(selectionStartPosition, GetMouseWorldPosition(false));
@@ -493,9 +489,9 @@ public class GraphManager : MonoBehaviour
             }
         }
     
-        // --- 3. ドラッグ中の処理 (フレームごと) ---
+        // ドラッグ中の処理
         
-        // 3a. 複数ノードのドラッグ中
+        // 複数ノードのドラッグ中
         if (isDraggingSelection)
         {
             Vector3 currentMousePosition = GetMouseWorldPosition(false);
@@ -510,10 +506,10 @@ public class GraphManager : MonoBehaviour
             }
             lastMousePosition = currentMousePosition;
         }
-        // 3b. 単一ノードのドラッグ中
+        // 単一ノードのドラッグ中
         else if (isDraggingNode && selectedNode != null)
         {
-            // 単一ドラッグはグリッドにスナップしながら動かす (元のロジック)
+            // 単一ドラッグはグリッドにスナップしながら動かす
             selectedNode.transform.position = GetMouseWorldPosition(true); // Snap to grid
             foreach (Edge edge in selectedNode.edges.Values)
             {
@@ -536,9 +532,7 @@ public class GraphManager : MonoBehaviour
                 }
                 else if (firstSelectedNodeForEdge != hitNode)
                 {
-                    // ▼▼▼ 変更点 ▼▼▼
-                    // 以前: CreateEdge(start, end) を直接実行
-                    // 新規: CreateEdgeCommandを作成してUndoManagerに登録
+                    // CreateEdgeCommandを作成してUndoManagerに登録
                     ICommand command = new CreateEdgeCommand(this, firstSelectedNodeForEdge, hitNode);
                     UndoManager.Instance.RegisterCommand(command);
                     
@@ -565,9 +559,7 @@ public class GraphManager : MonoBehaviour
                 Node hitNode = hit.collider.GetComponent<Node>();
                 if (hitNode != null)
                 {
-                    // ▼▼▼ 変更点 ▼▼▼
-                    // 以前: DeleteNode(hitNode) を直接実行
-                    // 新規: DeleteSelectionCommandを作成してUndoManagerに登録
+                    // DeleteSelectionCommandを作成してUndoManagerに登録
                     ICommand command = new DeleteSelectionCommand(this, new List<Node> { hitNode }, new List<Edge>());
                     UndoManager.Instance.RegisterCommand(command);
                     return;
@@ -576,9 +568,8 @@ public class GraphManager : MonoBehaviour
                 Edge hitEdge = hit.collider.GetComponent<Edge>();
                 if (hitEdge != null)
                 {
-                    // ▼▼▼ 変更点 ▼▼▼
-                    // 以前: DeleteEdge(hitEdge) を直接実行
-                    // 新規: DeleteSelectionCommandを作成してUndoManagerに登録
+
+                    // DeleteSelectionCommandを作成してUndoManagerに登録
                     ICommand command = new DeleteSelectionCommand(this, new List<Node>(), new List<Edge> { hitEdge });
                     UndoManager.Instance.RegisterCommand(command);
                     return;
@@ -794,7 +785,7 @@ public class GraphManager : MonoBehaviour
         }
         if (allNodes.Count == 0) return;
     
-        // 1. グラフの中心を計算 (これは必要)
+        // グラフの中心を計算
         Bounds bounds = new Bounds(allNodes[0].transform.position, Vector3.zero);
         foreach (Node node in allNodes)
         {
@@ -803,8 +794,7 @@ public class GraphManager : MonoBehaviour
     
         thumbnailCamera.gameObject.SetActive(true);
     
-        // ▼▼▼ 修正箇所 ▼▼▼
-        // 2. mainCamera（ユーザーのカメラ）のズーム設定をthumbnailCameraにコピーする
+        // mainCamera（ユーザーのカメラ）のズーム設定をthumbnailCameraにコピーする
         if (mainCamera.orthographic)
         {
             thumbnailCamera.orthographic = true;
@@ -823,14 +813,8 @@ public class GraphManager : MonoBehaviour
             // mainCameraのZ位置(ズームレベル)をコピーし、XYはグラフの中心に合わせる
             thumbnailCamera.transform.position = new Vector3(bounds.center.x, bounds.center.y, mainCamera.transform.position.z);
         }
-        // ▲▲▲ 修正ここまで ▲▲▲
     
-        // --- 既存の自動計算ロジックは上記に置き換えられたため不要 ---
-        // float graphSize = Mathf.Max(bounds.size.x, bounds.size.y);
-        // ...
-        // thumbnailCamera.transform.position = new Vector3(bounds.center.x, bounds.center.y, -finalDistance);
-    
-        // 3. レンダリング処理 (変更なし)
+        // レンダリング処理 (変更なし)
         RenderTexture rt = new RenderTexture(256, 256, 24);
         thumbnailCamera.targetTexture = rt;
         Texture2D screenShot = new Texture2D(256, 256, TextureFormat.RGB24, false);
@@ -909,9 +893,6 @@ public class GraphManager : MonoBehaviour
         }
     }
 
-    // --- 【修正版】単発クリック用のズーム処理 ---
-
-    // 1回のクリックで動く量（お好みで調整してください）
     public float clickZoomStep = 2.0f; 
 
     // +ボタンのOnClickに割り当てる
@@ -940,8 +921,7 @@ public class GraphManager : MonoBehaviour
         else
         {
             Vector3 pos = mainCamera.transform.position;
-            // Z座標を増やす = ズームイン（カメラが対象に近づく）
-            // ※カメラの向きや位置によっては符号（+/-）が逆になる場合があります
+            // ズームイン（カメラが対象に近づく）
             pos.z += direction * clickZoomStep;
             mainCamera.transform.position = pos;
         }
@@ -949,7 +929,6 @@ public class GraphManager : MonoBehaviour
 
     private void HandleCameraControls()
     {
-        // ▼▼▼ 追加: UIの上にマウスがある時は、ホイール入力を無視する ▼▼▼
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             float scroll = Input.GetAxis("Mouse ScrollWheel");
@@ -998,7 +977,7 @@ public class GraphManager : MonoBehaviour
 
         Vector3 panMove = Vector3.zero;
 
-        // --- パン（画面移動）処理 ---
+        // パン（画面移動）処理
         // ホイールボタンが押された瞬間
         if (Input.GetMouseButtonDown(2))
         {
@@ -1037,7 +1016,7 @@ public class GraphManager : MonoBehaviour
         }
     }
 
-    // 【コマンド専用】ノードをリストから削除する（Destroyしない）
+    // ノードをリストから削除する（Destroyしない）
     public void Public_RemoveNode(Node node)
     {
         if (allNodes.Contains(node))
@@ -1046,7 +1025,7 @@ public class GraphManager : MonoBehaviour
         }
     }
 
-    // 【コマンド専用】辺をリストとノードに追加する
+    // 辺をリストとノードに追加する
     public void Public_AddEdge(Edge edge)
     {
         if (!allEdges.Contains(edge))
@@ -1059,7 +1038,7 @@ public class GraphManager : MonoBehaviour
         }
     }
 
-    // 【コマンド専用】辺をリストとノードから削除する（Destroyしない）
+    // 辺をリストとノードから削除する（Destroyしない）
     public void Public_RemoveEdge(Edge edge)
     {
         if (allEdges.Contains(edge))
@@ -1074,7 +1053,6 @@ public class GraphManager : MonoBehaviour
 
     #endregion
 
-    // OnGUIはUpdateとは別に、GUI描画イベントのたびに呼ばれます
     private void OnGUI()
     {
         // 範囲選択中なら、矩形を描画する
@@ -1103,7 +1081,6 @@ public class GraphManager : MonoBehaviour
         return position;
     }
     
-    // 既存のGetMouseWorldPositionメソッドを、新しいヘルパーを使うように修正
     private Vector3 GetMouseWorldPosition(bool snapToGrid = true)
     {
         Vector3 mousePos = Input.mousePosition;

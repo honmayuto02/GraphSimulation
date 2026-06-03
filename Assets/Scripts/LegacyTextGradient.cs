@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI; // 普通のTextを使うために必要
+using UnityEngine.UI;
 using System.Collections.Generic;
 
-// これをつけると Add Component > UI > Effects > Gradient で選べるようになります
 [AddComponentMenu("UI/Effects/Gradient")]
 public class LegacyTextGradient : BaseMeshEffect
 {

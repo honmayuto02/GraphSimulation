@@ -1,4 +1,3 @@
-// CreateEdgeCommand.cs
 using UnityEngine;
 
 public class CreateEdgeCommand : ICommand

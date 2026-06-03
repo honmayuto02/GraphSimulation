@@ -12,11 +12,11 @@ public class OptionsMenuManager : MonoBehaviour
 
     void Start()
     {
-        // 1. ウィンドウを初期化（閉じる）
+        // ウィンドウを初期化（閉じる）
         if (optionsWindow != null) 
             optionsWindow.SetActive(false);
 
-        // 2. ▼▼▼ 保存されたデータを復元する処理 ▼▼▼
+        // 保存されたデータを復元する処理
         
         // GameDataから設定を読み込む
         bool savedGridState = GameData.isGridVisible;
@@ -28,19 +28,14 @@ public class OptionsMenuManager : MonoBehaviour
         }
 
         // トグルの見た目(ON/OFF)を合わせる
-        // ※これを変えると onValueChanged イベントが発火して、下の SetGridVisibility も自動で呼ばれます
         if (gridToggle != null)
         {
-            // アニメーション付きトグルの場合、即座に反映させるため
-            // WithoutNotifyではなく、普通にisOnを変えてイベントを飛ばしてOKです
             gridToggle.isOn = savedGridState; 
             
             // イベント登録（Startの最後に行う）
             gridToggle.onValueChanged.AddListener(SetGridVisibility);
         }
     }
-
-    // --- 以下、既存の関数 ---
 
     public void OpenOptions()
     {
@@ -55,13 +50,13 @@ public class OptionsMenuManager : MonoBehaviour
     // トグルが押された時に呼ばれる関数
     public void SetGridVisibility(bool isVisible)
     {
-        // 1. オブジェクトの表示切り替え
+        //  オブジェクトの表示切り替え
         if (gridObject != null)
         {
             gridObject.SetActive(isVisible);
         }
 
-        // 2. ▼▼▼ 設定を GameData に保存（更新）する ▼▼▼
+        // 設定を GameData に保存（更新）する
         GameData.isGridVisible = isVisible;
     }
 }

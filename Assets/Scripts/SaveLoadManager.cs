@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
-using UnityEngine.UI; // Text用
-using TMPro; // InputField用 (もしInputが標準ならここは不要)
+using UnityEngine.UI;
+using TMPro; 
 
 public class SaveLoadManager : MonoBehaviour
 {
@@ -14,11 +14,9 @@ public class SaveLoadManager : MonoBehaviour
     [Header("Confirmation Window UI")]
     public GameObject confirmationPanel;
     
-    // ▼▼▼ 新しく追加した参照変数はここから ▼▼▼
     public Text headerTitleText;      // ウィンドウ上部の "Slot X"
     public Text lastModifiedDateText; // "2025/12/20 14:00"
     public Text fileDetailsText;      // "Nodes: 24..." (もしあれば)
-    // ▲▲▲ 追加ここまで ▲▲▲
 
     public RawImage confirmationThumbnailImage;
 
@@ -36,16 +34,12 @@ public class SaveLoadManager : MonoBehaviour
         PopulateGrid();
     }
 
-    // --- 既存のプリセット処理（省略） ---
     private void CheckAndCopyPresets() { CopyPresetToSlot(0, "preset_grid.json", "preset_grid_thumbnail.png"); }
     private void CopyPresetToSlot(int slotIndex, string presetJsonName, string presetThumbName)
     {
-        // (省略: 前回のコードと同じ)
         string destDataPath = GetSavePath(slotIndex);
         if (File.Exists(destDataPath)) return;
-        /* ... コピー処理 ... */
     }
-    // ------------------------------------
 
     public void PopulateGrid()
     {
@@ -63,7 +57,7 @@ public void OnSlotClicked(int slotIndex)
         currentSelectedSlot = slotIndex;
         confirmationPanel.SetActive(true);
 
-        // 1. テキスト情報の更新
+        // テキスト情報の更新
         if (headerTitleText != null) headerTitleText.text = $"Slot {slotIndex + 1}";
         
         string savedName = PlayerPrefs.GetString($"SlotName_{slotIndex}", $"Slot {slotIndex + 1}");
@@ -106,7 +100,7 @@ public void OnSlotClicked(int slotIndex)
                 }
             }
 
-            // ▼▼▼ 2. サムネイル画像の読み込み処理を追加 ▼▼▼
+            // サムネイル画像の読み込み処理を追加
             if (confirmationThumbnailImage != null)
             {
                 string thumbPath = GetThumbnailPath(slotIndex);
@@ -142,13 +136,11 @@ public void OnSlotClicked(int slotIndex)
             }
         }
 
-        // 3. ボタン制御
+        // ボタン制御
         if (loadButton) loadButton.interactable = hasFile;
         if (renameButton) renameButton.interactable = hasFile;
         if (saveButton) saveButton.interactable = true;
     }
-
-    // --- 以下、ボタン機能（変更なし） ---
 
     public void OnLoadPressed()
     {

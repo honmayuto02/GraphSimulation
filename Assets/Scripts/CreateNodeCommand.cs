@@ -1,4 +1,3 @@
-// CreateNodeCommand.cs
 using UnityEngine;
 
 public class CreateNodeCommand : ICommand

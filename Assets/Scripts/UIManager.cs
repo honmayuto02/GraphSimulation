@@ -57,14 +57,14 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator ShowAndFadeMessage(string message)
     {
-        // 1. メッセージを設定し、完全に不透明にする
+        // メッセージを設定し、完全に不透明にする
         logText.text = message;
         logText.color = new Color(logText.color.r, logText.color.g, logText.color.b, 1f);
 
-        // 2. 設定された秒数だけ待機
+        // 設定された秒数だけ待機
         yield return new WaitForSeconds(displayDuration);
 
-        // 3. 徐々に透明にする（フェードアウト）
+        // 徐々に透明にする（フェードアウト）
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
         {

@@ -70,8 +70,6 @@ public class WaveAgent : MonoBehaviour
             yield break;
         }
 
-        // --- 以下、代表者(Master)のみが実行する処理 ---
-
         // 全Agentの進入路を収集
         HashSet<Edge> incomingEdges = new HashSet<Edge>();
         foreach (var agent in agentsAtNode)

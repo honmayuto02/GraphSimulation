@@ -4,7 +4,6 @@ using System.IO;
 
 public class SaveSlot : MonoBehaviour
 {
-    // --- 既存の変数 ---
     [Header("UI切り替え用")]
     public GameObject contentRoot;
     public GameObject emptyRoot;
@@ -12,7 +11,7 @@ public class SaveSlot : MonoBehaviour
     [Header("データ表示用パーツ")]
     public RawImage thumbnailImage;
     public Text dateText;
-    public Text fileNameText; // ここに名前を表示します
+    public Text fileNameText; // ここに名前を表示
     public Text infoText;
 
     [Header("内部データ")]
@@ -52,7 +51,7 @@ public class SaveSlot : MonoBehaviour
             System.DateTime lastWrite = File.GetLastWriteTime(savePath);
             if(dateText) dateText.text = lastWrite.ToString("yyyy/MM/dd\nHH:mm");
 
-            // ★変更点: Manager経由でカスタム名を取得して表示
+            // Manager経由でカスタム名を取得して表示
             if(fileNameText) fileNameText.text = manager.GetSlotName(slotIndex);
             
             if (infoText)
@@ -90,7 +89,6 @@ public class SaveSlot : MonoBehaviour
         }
     }
 
-    // ▼▼▼ クリック時の処理を変更 ▼▼▼
     public void OnClickSlot()
     {
         // いきなりLoadGameせず、ウィンドウを開く
