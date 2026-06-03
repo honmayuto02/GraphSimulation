@@ -8,7 +8,7 @@
 </p>
 
 
-## 🌟 主な機能
+## 主な機能
 
 ### 1. グラフエディター
 モード切り替え方式を採用した、直感的な操作感を持つエディタです。
@@ -32,7 +32,7 @@
 <img width="600" alt="マイムービー-7" src="https://github.com/user-attachments/assets/11470025-94b6-4614-a733-64729b19355d" />
 <p>
 
-## 🚀 クイックスタート
+## 使い方
 
 1. **グラフを作成**: `ノード設置`モードで頂点を作り、`辺設置`モードで繋ぎます。
 2. **シミュレーション開始**: `スタート`をクリックし、初期地点となるノードを選択します。
@@ -43,14 +43,14 @@
 </p>
 
 
-## 🛠 技術スタック
+## 技術スタック
 
 * **Engine**: Unity 2018
 * **Language**: C#
 * **Architecture**: Singleton Pattern (GraphManager), Agent-based Modeling
 * **Physics**: Layer-based collision filtering for optimized performance
 
-## ⚠️ 対応OS
+## ⚠️対応OS
 * **Mac OSのみ対応しています**
 
 ---
